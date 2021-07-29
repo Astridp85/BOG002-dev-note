@@ -5,6 +5,8 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 
+
+
 }
 
 
@@ -14,6 +16,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+ 
 }
 /* Estilos Login y registro */
 .mensaje{
@@ -24,10 +27,11 @@ body {
 } 
 .imgLogin{
 position: relative;
-width: 100%;
-height: 100%;
-left: 0px;
+width: 60%;
+height: 60%;
+left: 83px;
 top: 0px;
+border-radius: 10px;
 }
 .contenedorLogo {
   width: 60%;
@@ -56,11 +60,16 @@ margin-bottom:0;
 }
 .loginGmail{
   
-position: relative;
+position: absolute;
 width: 40px;
 height: 27px;
-left: 142px;
-top: 6px;
+left: 138px;
+margin-top: 25px;
+
+}
+.btnGoogle{
+  position: relative;
+ 
 }
 .linkMess{
   font-size: 22px;
@@ -186,16 +195,16 @@ footer{
   width: 100vw;
   display: flex;
   align-items: center;
-  background: #0b1150;
+  background: rgba(17, 215, 179, 1);
 }
 footer a{
-  color: #EDD376;
+  color: #222220;
   font-size: 12px;
   cursor: pointer;
   margin-left: 15px;
 }
 footer img {
-  margin-left: 35px;
+  margin-left: 605px;
   width: 2%;
   height: 2%;
 }

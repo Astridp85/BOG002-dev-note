@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import logo from '../imagenes/logo.png'
 import gmailLogo from '../imagenes/gmailLogo.png'
 import { useAuth } from '../context/AuthContext';
-import {auth} from '../firebase';
+import { auth } from '../firebase';
 import firebase from 'firebase';
 
 
@@ -11,7 +11,6 @@ import firebase from 'firebase';
 
 export const Login = () => {
 
-  // const {loginGmail} = useAuth();
   const { login } = useAuth();
   const [error, setError] = useState('');
 
@@ -25,89 +24,90 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     try {
       await login(email, password);
       // loginGmail()
-     
-      history.push('/');
+
+      history.push('/Notes');
     } catch (error) {
 
       setError('Credenciales inválidas');
       setTimeout(() => setError(''), 1500);
     }
   }
-  // const  {loginGmail} = useAuth();
 
-  const handleAuth = async()  => {
+
+  const handleAuth = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithPopup(provider)
-  
-    try{  history.push('/');
-  }catch(err) {
-    setError('Credenciales inválidas');
-    setTimeout(() => setError(''), 1500);
+    await auth.signInWithPopup(provider)
+
+    try {
+      history.push('/Notes');
+    } catch (err) {
+      setError('Credenciales inválidas');
+      setTimeout(() => setError(''), 1500);
     }
   }
 
 
   return (
-<>
-    <img className="imgLogin" src={logo} alt='background' />
-    <div className='contenedorLogo'>
-    </div>
-    <div className='card'>
-      <div className='card-header' >
-        {error && <p className='error' >{error}</p>}
-        
-        <h1 className='mensaje'>Inicia sesión</h1>
+    <>
+      <img className="imgLogin" src={logo} alt='background' />
+      <div className='contenedorLogo'>
       </div>
-      <div className='card-body'>
-        <form className='card card-body'onSubmit={handleSubmit}>
+      <div className='card'>
+        <div className='card-header' >
+          {error && <p className='error' >{error}</p>}
 
-        <div className="form-group input-group">
-                <div className="input-group-text bg-light">
-                    <i className="material-icons">mail</i>
-                </div>
-                <input
-                    type="email"
-                    className="form-control "
-                    placeholder="Correo electrónico"
-                    name="correo"
-                    onChange={handleEmail}
-                />
+          <h1 className='mensaje'>Inicia sesión</h1>
+        </div>
+        <div className='card-body'>
+          <form className='card card-body' onSubmit={handleSubmit}>
+
+            <div className="form-group input-group">
+              <div className="input-group-text bg-light">
+                <i className="material-icons">mail</i>
+              </div>
+              <input
+                type="email"
+                className="form-control "
+                placeholder="Correo electrónico"
+                name="correo"
+                onChange={handleEmail}
+              />
             </div>
 
 
 
 
             <div className="form-group input-group">
-                <div className="input-group-text bg-light">
-                    <i className="material-icons">create</i>
-                </div>
-                <input
-                    type="password"
-                    className="form-control "
-                    placeholder="Contraseña"
-                    name="identificacion"
-                    onChange={handlePassword}
-                />
+              <div className="input-group-text bg-light">
+                <i className="material-icons">create</i>
+              </div>
+              <input
+                type="password"
+                className="form-control "
+                placeholder="Contraseña"
+                name="identificacion"
+                onChange={handlePassword}
+              />
             </div>
 
 
             <button className="btn btn-primary btn-block">
-                Iniciar sesión
+              Iniciar sesión
             </button>
-         
-          <button className="btnGoogle" onClick={handleAuth}> <img   className="loginGmail"src={gmailLogo} alt='gmail' /></button>
-          <p className='mensGmail'>Inicia sesión con Gmail </p>
-        </form>
-        <p className='linkMess'>¿No tienes una cuentra? <Link to='/Signup'>Regístrate</Link> </p>
-    
+
+            <button className="btnGoogle" onClick={handleAuth}> <img className="loginGmail" src={gmailLogo} alt='gmail' /></button>
+            <p className='mensGmail'>Inicia sesión con Gmail </p>
+          </form>
+          <p className='linkMess'>¿No tienes una cuentra? <Link to='/Signup'>Regístrate</Link> </p>
+
+        </div>
+
       </div>
 
-    </div>
-    
     </>
   )
 }

@@ -3,13 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-
-
-
 }
-
-
 body {
   height: 100%;
   width: 100%;
@@ -123,31 +117,12 @@ margin-top: 15px;
   border-radius: 100px;
 }
 
-.contenedorLogo2{
-  width: 50%;
-
-}
-.contenedorLogo2, .cardHome{
-  margin:auto;
-	text-align:center;
- 
- 
-}
-.imgLogo2{
-border-radius: 52px;
-margin: auto;
-max-width: 90%;
-width: 40%;
-height: 60%;
-
-
-}
 .imgHome{
 position: absolute;
-width: 20%;
-height: 20%;
+width: 10%;
+height: 10%;
 border-radius: 10px;
-left: 219px;
+left: 79px;
 top: 30px;
 }
 .mssPrincipal{
@@ -155,9 +130,8 @@ top: 30px;
  display: flex;
 
 }
-.usuario{
-  margin-top: 1%;
-  margin-left: 1%;
+.bienvenida{
+  margin-top: 3%;
 }
 .usuario{
   color: rgb(243, 153, 8);
@@ -166,11 +140,13 @@ top: 30px;
   font-size: 22px;
   font-family: inherit;
   font-weight: bold;
+  margin-top: 4%;
+  margin-left: 1%;
 }
 .btnLogout{
  text-align: right;
  position: relative;
- margin-top: 23%;
+ margin-top: 10%;
 
 }
 

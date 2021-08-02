@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import 'bootswatch/dist/sketchy/bootstrap.min.css';
+import 'bootswatch/dist/superhero/bootstrap.min.css';
 
 
 

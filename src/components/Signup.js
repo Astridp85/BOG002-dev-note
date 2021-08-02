@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../imagenes/logo.png'
-import gmailLogo from '../imagenes/gmailLogo.png'
-
-
-
-
+import logo from '../imagenes/logo.png';
+import gmailLogo from '../imagenes/gmailLogo.png';
 import { useAuth } from '../context/AuthContext';
+import { auth } from '../firebase';
+import firebase from 'firebase';
+
 
 
 export const SignUp = () => {
@@ -33,13 +32,24 @@ export const SignUp = () => {
     } else {
       try {
         await signup(email, password);
-        history.push('/');
+        history.push('/Notes');
       } catch (error) {
         setError('Credenciales inválidas');
         setTimeout(() => setError(''), 1500);
       }
     }
  
+  }
+  const handleAuth = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider)
+
+    try {
+      history.push('/Notes');
+    } catch (err) {
+      setError('Credenciales inválidas');
+      setTimeout(() => setError(''), 1500);
+    }
   }
 
   return (
@@ -102,8 +112,9 @@ export const SignUp = () => {
             <button type='submit'className="btn btn-primary btn-block">
             Registrarme
             </button>
-            <img className="loginGmail" src={gmailLogo} alt='gmail' />
-      
+        
+            <button className="btnGoogle" onClick={handleAuth}> <img className="loginGmail"src={gmailLogo} alt='gmail' /></button>
+          <p className='mensGmail'>Inicia sesión con Gmail </p>
         </form>
       
         <p className= 'linkMess'>¿Ya tienes cuenta? <Link to='/login'>Iniciar sesión</Link> </p>

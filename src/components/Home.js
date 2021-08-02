@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../imagenes/logo.png'
-
 import { db } from '../firebase.js'
 
 
@@ -54,6 +53,17 @@ export const Home = () => {
     }
 
   }
+
+  const onDeleteNote = async (id) => {
+    // console.log(id);
+    if (window.confirm('¿Estás seguro que quieres eliminar esta nota?')) {
+      // console.log(id)
+      await db.collection('Notas').doc(id).delete();
+      console.log('tarea eliminada')
+    }
+  };
+
+  const [currentId, setCurrentId] = useState('');
   const [notas, setNotas] = useState([]);
 
   const getNotes = () => {
@@ -69,10 +79,28 @@ export const Home = () => {
       setNotas(docs)
     });
   };
+  // useEffect para obtener datos
   useEffect(() => {
-    console.log('Obtener datos...')
+    // console.log('Obtener datos...')
+    
     getNotes();
   }, [])
+
+
+  const getNoteById = async(id) =>{
+    const doc = await db.collection('Notas').doc(id).get();
+    setValues({... doc.data()})
+
+  }
+  //UseEffect para editar
+  useEffect(() => {
+    if (currentId === ''){
+      setValues({...initialStateValues})
+    } else {
+      getNoteById(currentId)
+    }
+    
+  }, [currentId])
 
   return (
 
@@ -91,57 +119,66 @@ export const Home = () => {
           <p className='usuario'>{currentUser.email}</p>
         </div>
 
-        <div className='col-md-18 p-2' >
-        <form onSubmit={handleSubmit} className="card card-body border-primary">
-          <div className="form-group input-group">
-            <div className="input-group-text bg-light">
-              <i className="material-icons">create</i>
+        <div className='col-md-14 p-2' >
+          <form onSubmit={handleSubmit} className="card card-body border-primary" {...{addOrEditNotes, currentId, notas}}>
+            <div className="form-group input-group">
+              <div className="input-group-text bg-light">
+                <i className="material-icons">create</i>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Título de la Nota"
+                name="titulo"
+                onChange={handleInputChange}
+                value={values.titulo}
+
+              />
             </div>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Título de la Nota"
-              name="titulo"
-              onChange={handleInputChange}
-              value={values.titulo}
+            <br />
+            <div className="form-group">
+              <textarea
+                rows="3"
+                className="form-control"
+                placeholder="Descripción"
+                name="description"
+                onChange={handleInputChange}
+                value={values.description}
 
-            />
-          </div>
+              ></textarea>
+            </div>
+            <br />
+            <button className="btn btn-primary btn-block">
+              {currentId === '' ? ' Crear nota'  : 'Actualizar' }
+            </button>
 
-          <div className="form-group">
-            <textarea
-              rows="3"
-              className="form-control"
-              placeholder="Descripción"
-              name="description"
-              onChange={handleInputChange}
-              value={values.description}
-
-            ></textarea>
-          </div>
-
-          <button className="btn btn-primary btn-block">
-            Crear nota
-          </button>
-        </form>
+          </form>
         </div>
 
-        <div className='col-md-18 p-2' onClick={addOrEditNotes}>
-         
-            {notas.map(nota => (
-              <div className= 'card mb-1' key={nota.id}> 
-              <div className= 'card-body'>
-              <h4>{nota.titulo}</h4>  
-              <p >{nota.description}</p>
-              </div>
-               
-             
-              </div>
-           
-            ))}
+        <div className='col-md-16 p-2'>
 
-          </div>
-      
+          {notas.map(nota => (
+            <div className='card mb-1' key={nota.id}>
+              <div className='card-body'>
+                <div className="d-flex justify-content-between">
+                  <h4>{nota.titulo}</h4>
+                  <div>
+                    <i className='material-icons text-danger'
+                      onClick={() => onDeleteNote(nota.id)}>close</i>
+                    <i className='material-icons'
+                      onClick={() => setCurrentId(nota.id)}>create</i>
+                  </div>
+                </div>
+                <p >{nota.description}</p>
+              </div>
+
+
+            </div>
+
+          ))}
+
+        </div>
+
 
 
       </div>

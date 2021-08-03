@@ -22,10 +22,21 @@ export const Home = () => {
   }
 
   const addOrEditNotes = async (noteObject) => {
-    // console.log (noteObject)
-    await db.collection('Notas').doc().set(noteObject)
-    console.log('Una tarea nueva agregada')
 
+    try {
+    // console.log (noteObject)
+    if (currentId === '') {
+      await db.collection('Notas').doc().set(noteObject)
+      // console.log('Una tarea nueva agregada')
+    } else {// si si tiene el id seleccionado
+      await db.collection('Notas').doc(currentId).update(noteObject);
+  
+    setCurrentId ('') // Para que el id cambie de nuevo y este en blanco y no haga mas peticiones
+  }
+  }
+catch (error){
+  console.error(error);
+}
   }
 
 
@@ -82,24 +93,24 @@ export const Home = () => {
   // useEffect para obtener datos
   useEffect(() => {
     // console.log('Obtener datos...')
-    
+
     getNotes();
   }, [])
 
 
-  const getNoteById = async(id) =>{
+  const getNoteById = async (id) => {
     const doc = await db.collection('Notas').doc(id).get();
-    setValues({... doc.data()})
+    setValues({ ...doc.data() })// Estableciendo los valores del formulario para editar
 
   }
   //UseEffect para editar
   useEffect(() => {
-    if (currentId === ''){
-      setValues({...initialStateValues})
+    if (currentId === '') {
+      setValues({ ...initialStateValues })
     } else {
       getNoteById(currentId)
     }
-    
+
   }, [currentId])
 
   return (
@@ -120,7 +131,7 @@ export const Home = () => {
         </div>
 
         <div className='col-md-14 p-2' >
-          <form onSubmit={handleSubmit} className="card card-body border-primary" {...{addOrEditNotes, currentId, notas}}>
+          <form onSubmit={handleSubmit} className="card card-body border-primary" {...{ addOrEditNotes, currentId, notas }}>
             <div className="form-group input-group">
               <div className="input-group-text bg-light">
                 <i className="material-icons">create</i>
@@ -149,7 +160,7 @@ export const Home = () => {
             </div>
             <br />
             <button className="btn btn-primary btn-block">
-              {currentId === '' ? ' Crear nota'  : 'Actualizar' }
+              {currentId === '' ? ' Crear nota' : 'Actualizar'}
             </button>
 
           </form>

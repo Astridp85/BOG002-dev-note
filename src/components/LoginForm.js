@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../imagenes/logo.png'
+import DevNotes from '../imagenes/DevNotes.png'
 import gmailLogo from '../imagenes/gmailLogo.png'
 import { useAuth } from '../context/AuthContext';
 import { auth } from '../firebase';
@@ -53,7 +53,7 @@ export const Login = () => {
 
   return (
     <>
-      <img className="imgLogin" src={logo} alt='background' />
+      <img className="imgLogin" src={DevNotes} alt='background' />
       <div className='contenedorLogo'>
       </div>
       <div className='card'>
@@ -69,6 +69,7 @@ export const Login = () => {
               <div className="input-group-text bg-light">
                 <i className="material-icons">mail</i>
               </div>
+           
               <input
                 type="email"
                 className="form-control "
@@ -77,10 +78,7 @@ export const Login = () => {
                 onChange={handleEmail}
               />
             </div>
-
-
-
-
+           
             <div className="form-group input-group">
               <div className="input-group-text bg-light">
                 <i className="material-icons">create</i>
@@ -93,7 +91,6 @@ export const Login = () => {
                 onChange={handlePassword}
               />
             </div>
-
 
             <button className="btn btn-primary btn-block">
               Iniciar sesión

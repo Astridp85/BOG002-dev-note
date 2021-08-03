@@ -119,8 +119,8 @@ margin-top: 15px;
 
 .imgHome{
 position: absolute;
-width: 10%;
-height: 10%;
+width: 20%;
+height: 30%;
 border-radius: 10px;
 left: 79px;
 top: 30px;
@@ -131,10 +131,10 @@ top: 30px;
 
 }
 .bienvenida{
-  margin-top: 3%;
+  margin-top: 2%;
 }
 .usuario{
-  color: rgb(243, 153, 8);
+  color: rgb(235, 156, 10);
 }
 .usuario {
   font-size: 22px;
@@ -147,6 +147,7 @@ top: 30px;
  text-align: right;
  position: relative;
  margin-top: 10%;
+
 
 }
 

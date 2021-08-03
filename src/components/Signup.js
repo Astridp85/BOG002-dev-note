@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../imagenes/logo.png';
+import DevNotes from '../imagenes/DevNotes.png'
 import gmailLogo from '../imagenes/gmailLogo.png';
 import { useAuth } from '../context/AuthContext';
 import { auth } from '../firebase';
@@ -55,7 +55,7 @@ export const SignUp = () => {
   return (
 
     <>
-    <img className="imgLogin" src={logo} alt='background' />
+    <img className="imgLogin" src={DevNotes} alt='background' />
     <div className='contenedorLogo'>
     </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import logo from '../imagenes/logo.png'
+import DevNotes from '../imagenes/DevNotes.png'
 import { db } from '../firebase.js'
 
 
@@ -64,7 +64,7 @@ catch (error){
     }
 
   }
-
+// Borrar notas 
   const onDeleteNote = async (id) => {
     // console.log(id);
     if (window.confirm('¿Estás seguro que quieres eliminar esta nota?')) {
@@ -116,7 +116,7 @@ catch (error){
   return (
 
     <>
-      <img className="imgHome" src={logo} alt='background' />
+      <img className="imgHome" src={DevNotes} alt='background' />
 
       <div className='cardHome'>
         {error && <p className='error' >{error}</p>}
@@ -169,14 +169,14 @@ catch (error){
         <div className='col-md-16 p-2'>
 
           {notas.map(nota => (
-            <div className='card mb-1' key={nota.id}>
-              <div className='card-body'>
+            <div className='col mb-6' key={nota.id}>
+              <div className='card'>
                 <div className="d-flex justify-content-between">
                   <h4>{nota.titulo}</h4>
                   <div>
-                    <i className='material-icons text-danger'
+                    <i className='material-icons text-danger'style={{cursor:'pointer'}}
                       onClick={() => onDeleteNote(nota.id)}>close</i>
-                    <i className='material-icons'
+                    <i className='material-icons' style={{cursor:'pointer'}}
                       onClick={() => setCurrentId(nota.id)}>create</i>
                   </div>
                 </div>

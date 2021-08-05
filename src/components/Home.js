@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import DevNotes from '../imagenes/DevNotes.png'
+import logo from '../imagenes/logo.png'
 import { db } from '../firebase.js'
 
 
@@ -116,7 +116,7 @@ catch (error){
   return (
 
     <>
-      <img className="imgHome" src={DevNotes} alt='background' />
+      <img className="imgHome" src={logo} alt='background' />
 
       <div className='cardHome'>
         {error && <p className='error' >{error}</p>}
@@ -126,11 +126,11 @@ catch (error){
         </div>
 
         <div className='mssPrincipal'>
-          <h1 className='bienvenida'>Bienvenido/a:</h1>
+          <h1 className='bienvenida'>Hola</h1>
           <p className='usuario'>{currentUser.email}</p>
         </div>
 
-        <div className='col-md-14 p-2' >
+        <div className='col-md-4 p-2' >
           <form onSubmit={handleSubmit} className="card card-body border-primary" {...{ addOrEditNotes, currentId, notas }}>
             <div className="form-group input-group">
               <div className="input-group-text bg-light">

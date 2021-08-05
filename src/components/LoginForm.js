@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import DevNotes from '../imagenes/DevNotes.png'
+import logo from '../imagenes/logo.png'
 import gmailLogo from '../imagenes/gmailLogo.png'
 import { useAuth } from '../context/AuthContext';
 import { auth } from '../firebase';
@@ -53,7 +53,7 @@ export const Login = () => {
 
   return (
     <>
-      <img className="imgLogin" src={DevNotes} alt='background' />
+      <img className="imgLogin" src={logo} alt='background' />
       <div className='contenedorLogo'>
       </div>
       <div className='card'>
@@ -93,13 +93,13 @@ export const Login = () => {
             </div>
 
             <button className="btn btn-primary btn-block">
-              Iniciar sesión
+             Unirme
             </button>
 
-            <button className="btnGoogle" onClick={handleAuth}> <img className="loginGmail" src={gmailLogo} alt='gmail' /></button>
-            <p className='mensGmail'>Inicia sesión con Gmail </p>
+             <img className="loginGmail" src={gmailLogo} alt='gmail'  onClick={handleAuth}/>
+            <p className='mensGmail'onClick={handleAuth}>Inicia sesión con Gmail </p>
           </form>
-          <p className='linkMess'>¿No tienes una cuentra? <Link to='/Signup'>Regístrate</Link> </p>
+          <p className='linkMess'>¿No tienes una cuentra?   <Link to='/Signup'>Regístrate</Link> </p>
 
         </div>
 

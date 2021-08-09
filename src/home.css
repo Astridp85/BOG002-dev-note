@@ -1,0 +1,83 @@
+/* Estilos Home */
+
+
+.bodyNotas{
+    background-color: rgba(17, 215, 179, 0.007);
+   
+}
+.encabezadoHome{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-left: 75px;
+    justify-content: space-between;
+}
+.bienvenidaMenu{
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconoInput {
+    font-size: 22px;
+    position: absolute;
+    left: 3px; 
+    padding-top: 12px;
+} 
+ .contenedorIcono {
+    position: relative;
+ } 
+
+.imgHome{
+    position: relative;
+    width: 96px;
+    height: 76px;
+    border-radius: 10px;
+ 
+    }
+    .usuario{
+        margin-left: 3%;
+    }
+   
+  
+  .mssPrincipal{
+      display: flex;
+      margin-left: 155px;
+      justify-content: space-between;
+  }
+  
+  li {
+      list-style: none;
+      display: flex;
+     
+     
+    
+  }
+  
+
+  .menuForm{
+    margin-left: -55px;  
+    
+    position: relative;
+    width: 252px;
+    height: 364px;
+    background: rgba(215, 80, 17, 0.29);
+    border-radius: 10px; 
+  }
+  
+    .btnLogout{
+     text-align: right;
+     position: relative;
+     margin-top: 10%;
+    
+    
+    }
+    
+    .container{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    
+    

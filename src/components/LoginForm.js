@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../imagenes/logo.png'
+import logo3 from '../imagenes/logo3.png'
 import gmailLogo from '../imagenes/gmailLogo.png'
 import { useAuth } from '../context/AuthContext';
 import { auth } from '../firebase';
@@ -29,7 +29,7 @@ export const Login = () => {
       await login(email, password);
       // loginGmail()
 
-      history.push('/Notes');
+      history.push('/');
     } catch (error) {
 
       setError('Credenciales inválidas');
@@ -43,7 +43,7 @@ export const Login = () => {
     await auth.signInWithPopup(provider)
 
     try {
-      history.push('/Notes');
+      history.push('/');
     } catch (err) {
       setError('Credenciales inválidas');
       setTimeout(() => setError(''), 1500);
@@ -53,7 +53,8 @@ export const Login = () => {
 
   return (
     <>
-      <img className="imgLogin" src={logo} alt='background' />
+    <div className="bodyForms">
+      <img className="imgLogin" src={logo3} alt='background' />
       <div className='contenedorLogo'>
       </div>
       <div className='card'>
@@ -104,7 +105,7 @@ export const Login = () => {
         </div>
 
       </div>
-
+      </div>
     </>
   )
 }

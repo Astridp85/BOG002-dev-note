@@ -1,9 +1,9 @@
-import './App.css';
+import './inicio.css';
+import './home.css';
 import React from 'react';
 import { Login } from './components/LoginForm';
 import { SignUp } from './components/Signup';
 import { Home } from './components/Home';
-
 
 
 import { AuthProvider } from './context/AuthContext';
@@ -17,7 +17,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Switch>
-            <PrivateRoute exact path='/Notes' component={Home} />
+            <PrivateRoute exact path='/' component={Home} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={SignUp} />
           </Switch>

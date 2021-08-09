@@ -1,10 +1,10 @@
-/* * {
+ *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  /* /* box-sizing: border-box; */
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */  
   
-/* } */
+ }
 
 
 body {
@@ -23,6 +23,7 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+
 .card {
   position: relative;
   display: flex;
@@ -33,8 +34,8 @@ body {
   background-clip: border-box;
   border: 2px solid rgba(63, 77, 56, 1);
   border-radius: .25rem;
-  margin-top: 195%;
-  left: 23px;
+  margin-top: 209%;
+  left: 13px;
 
 }
 .card-body{
@@ -182,7 +183,7 @@ button, select {
 .imgLogin{
   position: absolute;
   width: 1024px;
-  height: 683px;
+  height: 712px;
   left: 0px;
   top: 0px;
   
@@ -225,6 +226,7 @@ margin-top: 25px;
   font-size: 22px;
   font-family: inherit;
   font-weight: bold;
+  margin-top: 5%;
 
 }
 .mensGmail{
@@ -232,51 +234,7 @@ margin-top: 25px;
   font-family: inherit;
   font-weight: bold;
   color: #6e5b05;
-}
-
-/* Estilos Home */
-
-
-
-.imgHome{
-position: absolute;
-width: 10%;
-height: 10%;
-border-radius: 10px;
-left: 79px;
-top: 30px;
-}
-.mssPrincipal{
-
- display: flex;
-
-}
-.bienvenida{
-  margin-top: 2%;
-}
-.usuario{
-  color: rgb(235, 156, 10);
-}
-.usuario {
-  font-size: 22px;
-  font-family: inherit;
-  font-weight: bold;
-  margin-top: 4%;
-  margin-left: 1%;
-}
-.btnLogout{
- text-align: right;
- position: relative;
- margin-top: 10%;
-
-
-}
-
-.container{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
+  margin-top: 3%;
 }
 
 
@@ -287,17 +245,21 @@ footer{
   height: 5vw;
   display: flex;
   align-items: center;  
-  background: rgba(63, 77, 56, 1)
+  background: rgba(74, 139, 43, 0.61);
 }
 footer a{
-  color: #222220;
+  color: rgba(237, 211, 118, 1);
   font-size: 12px;
   cursor: pointer;
-  margin-left: 15px;
+
+
 }
 footer img {
-  margin-left: 605px;
+  margin-left: 375px;
   width: 2%;
   height: 2%;
+  
 }
+
+
 

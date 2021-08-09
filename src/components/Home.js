@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import logo from '../imagenes/logo.png'
+import logo3 from '../imagenes/logo3.png'
 import { db } from '../firebase.js'
 
 
@@ -24,19 +24,19 @@ export const Home = () => {
   const addOrEditNotes = async (noteObject) => {
 
     try {
-    // console.log (noteObject)
-    if (currentId === '') {
-      await db.collection('Notas').doc().set(noteObject)
-      // console.log('Una tarea nueva agregada')
-    } else {// si si tiene el id seleccionado
-      await db.collection('Notas').doc(currentId).update(noteObject);
-  
-    setCurrentId ('') // Para que el id cambie de nuevo y este en blanco y no haga mas peticiones
-  }
-  }
-catch (error){
-  console.error(error);
-}
+      // console.log (noteObject)
+      if (currentId === '') {
+        await db.collection('Notas').doc().set(noteObject)
+        // console.log('Una tarea nueva agregada')
+      } else {// si si tiene el id seleccionado
+        await db.collection('Notas').doc(currentId).update(noteObject);
+
+        setCurrentId('') // Para que el id cambie de nuevo y este en blanco y no haga mas peticiones
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
 
@@ -64,7 +64,7 @@ catch (error){
     }
 
   }
-// Borrar notas 
+  // Borrar notas 
   const onDeleteNote = async (id) => {
     // console.log(id);
     if (window.confirm('¿Estás seguro que quieres eliminar esta nota?')) {
@@ -113,71 +113,106 @@ catch (error){
 
   }, [currentId])
 
+
   return (
 
     <>
-      <img className="imgHome" src={logo} alt='background' />
+    <div className="bodyNotas">
+      <div className="encabezadoHome">
+        <div className="logoHome">
+          <i className="material-icons">menu</i>
+          <img className="imgHome" src={logo3} alt='background' />
+        </div>
+        <div className="busqueda">
+          <div className="contenedorIcono">
+            <i className="material-icons iconoInput">search</i>
+            <input type="text" className="form-control inputPadding" placeholder="  Búsqueda" />
+          </div>
+        </div>
 
+        <div className="iconosEnlace">
+          <i className="material-icons">autorenew</i>
+          <i className="material-icons">person</i>
+          <i className="material-icons" onClick={handleLogout}>exit_to_app</i>
+          <div className='btnLogout'>
+            {/* <button className="btn btn-primary btn-block" onClick={handleLogout} >Cerrar sesión</button> */}
+          </div>
+
+        </div>
+      </div>
+      <div className="bienvenidaMenu">
       <div className='cardHome'>
         {error && <p className='error' >{error}</p>}
-        <div className='btnLogout'>
-          <button className="btn btn-warning" onClick={handleLogout} >Cerrar sesión</button>
-
-        </div>
-
         <div className='mssPrincipal'>
-          <h1 className='bienvenida'>Hola</h1>
-          <p className='usuario'>{currentUser.email}</p>
+          <h1 className='saludo'>Hola</h1>
+          <h1 className='usuario'>{currentUser.email}</h1>
         </div>
+        <div className="menuForm">
+          <div className="burgerMenu">
+            <ul>
+            <li><i className="material-icons">lightbulb_outline</i><h2>Notas</h2></li>
+            <li><i className="material-icons">notifications_none</i><h2>Recordatorios</h2></li>
+            <li><i className="material-icons">mode_edit</i><h2>editar</h2></li>
+            <li><i className="material-icons">attachment</i><h2>Notas archivadas</h2></li>
+            <li><i className="bi bi-trash"></i> <h2>Papelera</h2></li>
+            </ul>
+          </div>
+          </div>
 
-        <div className='col-md-4 p-2' >
-          <form onSubmit={handleSubmit} className="card card-body border-primary" {...{ addOrEditNotes, currentId, notas }}>
-            <div className="form-group input-group">
-              <div className="input-group-text bg-light">
-                <i className="material-icons">create</i>
+          <div className='col-md-2 ' >
+            <form onSubmit={handleSubmit} className="card card-body " {...{ addOrEditNotes, currentId, notas }}>
+              <div className="form-group input-group">
+                <div className="input-group-text bg-light">
+                  <i className="material-icons">create</i>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Título de la Nota"
+                  name="titulo"
+                  onChange={handleInputChange}
+                  value={values.titulo}
+
+                />
               </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Título de la Nota"
-                name="titulo"
-                onChange={handleInputChange}
-                value={values.titulo}
+              <br />
+              <div className="form-group">
+                <textarea
+                  rows="3"
+                  className="form-control"
+                  placeholder="Descripción"
+                  name="description"
+                  onChange={handleInputChange}
+                  value={values.description}
 
-              />
-            </div>
-            <br />
-            <div className="form-group">
-              <textarea
-                rows="3"
-                className="form-control"
-                placeholder="Descripción"
-                name="description"
-                onChange={handleInputChange}
-                value={values.description}
-
-              ></textarea>
-            </div>
-            <br />
-            <button className="btn btn-primary btn-block">
-              {currentId === '' ? ' Crear nota' : 'Actualizar'}
-            </button>
-
-          </form>
+                ></textarea>
+              </div>
+              <br />
+              <button className="btn btn-primary btn-block">
+                {currentId === '' ? ' Crear nota' : 'Actualizar'}
+              </button>
+              <div className="iconosHacker">
+                <i className="material-icons">color_lens</i>
+                <i className="material-icons">add_circle</i>
+                <i className="bi bi-pin-fill"></i>
+              </div>
+            </form>
+          </div>
         </div>
 
-        <div className='col-md-16 p-2'>
+        <div className=''>
 
           {notas.map(nota => (
-            <div className='col mb-6' key={nota.id}>
+            <div className='' key={nota.id}>
               <div className='card'>
-                <div className="d-flex justify-content-between">
+                <div className="">
                   <h4>{nota.titulo}</h4>
                   <div>
-                    <i className='material-icons text-danger'style={{cursor:'pointer'}}
-                      onClick={() => onDeleteNote(nota.id)}>close</i>
-                    <i className='material-icons' style={{cursor:'pointer'}}
-                      onClick={() => setCurrentId(nota.id)}>create</i>
+                    <i className="bi bi-x-circle-fill" style={{ cursor: 'pointer' }}
+                      onClick={() => onDeleteNote(nota.id)}></i>
+                    <i className="bi bi-pen-fill" style={{ cursor: 'pointer' }}
+                      onClick={() => setCurrentId(nota.id)}></i>
+
                   </div>
                 </div>
                 <p >{nota.description}</p>
@@ -193,7 +228,7 @@ catch (error){
 
 
       </div>
-
+      </div>
 
     </>
   )
